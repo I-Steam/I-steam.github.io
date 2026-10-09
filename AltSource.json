@@ -13,9 +13,9 @@
     ],
     "apps": [
         {
-            "name": "My Example App",
+            "name": "I-steam nightly",
             "bundleIdentifier": "com.example.myapp",
-            "developerName": "Example Developer",
+            "developerName": "xthrx",
             "subtitle": "An awesome app.",
             "localizedDescription": "This is an awesome app only available on AltStore.",
             "iconURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/FishApp.png",
@@ -59,9 +59,9 @@
             }
         },
         {
-            "name": "Another Example App",
+            "name": "I-steam main",
             "bundleIdentifier": "com.example.anotherapp",
-            "developerName": "Example Developer",
+            "developerName": "xthrx",
             "subtitle": "Another awesome app.",
             "localizedDescription": "This is another awesome app only available on AltStore.",
             "iconURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/SharkApp.png",
