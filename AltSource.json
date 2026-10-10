@@ -22,6 +22,14 @@
       "tintColor": "#2478C8",
       "versions": [
         {
+          "version": "nightly-38053954548",
+          "date": "2026-10-10T12:59:26Z",
+          "size": 140388,
+          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
+          "localizedDescription": "NIGHTLY build. SHA-256: 538b1c6f50562b195d0e5a7a4b0b7cc7ce6320f16c777d8870de775976ebd8a0. Unsigned prototype; sign with SideStore before installing.",
+          "minOSVersion": "16.0"
+        },
+        {
           "version": "nightly-38053686414",
           "date": "2026-10-10T12:55:32Z",
           "size": 140380,
