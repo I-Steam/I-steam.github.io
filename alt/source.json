@@ -9,16 +9,16 @@
       "name": "i-Steam",
       "bundleIdentifier": "com.chantinlongx.iSteam",
       "developerName": "I-Steam",
-      "subtitle": "i-Steam Nightly #72",
+      "subtitle": "i-Steam Nightly #73",
       "localizedDescription": "Experimental iOS launcher and VM runtime prototype. Guest OS boot and game execution are not yet guaranteed.",
       "tintColor": "2478C8",
       "category": "utilities",
-      "version": "nightly-38052954734",
-      "versionDate": "2026-10-10T12:50:53Z",
+      "version": "nightly-38053509773",
+      "versionDate": "2026-10-10T12:52:33Z",
       "versionDescription": "nightly build. Unsigned prototype; sign with SideStore before installing.",
-      "downloadURL": "https://github.com/I-Steam/I-steam/releases/download/nightly-38052954734/iSteam-SideStore.ipa",
+      "downloadURL": "https://github.com/I-Steam/I-steam/releases/download/nightly-38053509773/iSteam-SideStore.ipa",
       "size": 140380,
-      "sha256": "e1a0fa64a63c5497208d9444a87ce56f734cfb35985920744cbfdf99713e439d",
+      "sha256": "db573e27ad7a84e70002200c2585a6efabe613d21e985c7ec514be45122eff3c",
       "minOSVersion": "16.0"
     }
   ]
