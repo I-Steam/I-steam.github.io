@@ -1,0 +1,30 @@
+{
+  "name": "I-Steam",
+  "subtitle": "Official i-Steam iOS builds",
+  "description": "Experimental iOS VM launcher. Guest OS boot and game execution remain under development.",
+  "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
+  "website": "https://i-steam.github.io/",
+  "tintColor": "#2478C8",
+  "apps": [
+    {
+      "name": "i-Steam Release",
+      "bundleIdentifier": "com.Xthrx.iSteam",
+      "developerName": "Xthrx",
+      "subtitle": "Stable release channel",
+      "localizedDescription": "Release channel for the experimental i-Steam iOS launcher. Sign the unsigned IPA with SideStore. This is not yet a complete PC emulator.",
+      "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
+      "tintColor": "#2478C8",
+      "versions": []
+    },
+    {
+      "name": "i-Steam Nightly",
+      "bundleIdentifier": "com.Xthrx.iSteam.Nightly",
+      "developerName": "Xthrx",
+      "subtitle": "Nightly experimental builds",
+      "localizedDescription": "Nightly channel for experimental i-Steam development builds. May be unstable. Sign the unsigned IPA with SideStore.",
+      "iconURL": "https://i-steam.github.io/IMG_3523.jpeg",
+      "tintColor": "#2478C8",
+      "versions": []
+    }
+  ]
+}

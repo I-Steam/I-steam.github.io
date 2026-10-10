@@ -1,0 +1,33 @@
+{
+  "name": "I-Steam",
+  "identifier": "com.Xthrx.iSteam.source",
+  "subtitle": "i-Steam iOS VM launcher builds",
+  "description": "Experimental i-Steam builds. Unsigned IPAs must be signed before installation. Guest OS execution is still under development.",
+  "website": "https://i-steam.github.io/",
+  "apps": [
+    {
+      "name": "i-Steam Release",
+      "bundleIdentifier": "com.Xthrx.iSteam",
+      "developerName": "Xthrx",
+      "subtitle": "Stable release channel",
+      "localizedDescription": "Experimental iOS launcher. Sign the unsigned IPA with SideStore.",
+      "tintColor": "2478C8",
+      "category": "utilities",
+      "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
+      "downloadURL": "https://i-steam.github.io/downloads/iSteam-release.ipa",
+      "minOSVersion": "16.0"
+    },
+    {
+      "name": "i-Steam Nightly",
+      "bundleIdentifier": "com.Xthrx.iSteam.Nightly",
+      "developerName": "Xthrx",
+      "subtitle": "Nightly experimental builds",
+      "localizedDescription": "Experimental nightly iOS launcher. May be unstable; sign with SideStore.",
+      "tintColor": "2478C8",
+      "category": "utilities",
+      "iconURL": "https://i-steam.github.io/IMG_3523.jpeg",
+      "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
+      "minOSVersion": "16.0"
+    }
+  ]
+}
