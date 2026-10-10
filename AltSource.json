@@ -54,6 +54,25 @@
           "minOSVersion": "16.0"
         }
       ]
+    },
+    {
+      "name": "i-Steam nightly",
+      "bundleIdentifier": "com.Xthrx.iSteam.Nightly",
+      "developerName": "Xthrx",
+      "subtitle": "Experimental nightly build",
+      "localizedDescription": "Experimental iOS launcher prototype. Sign the unsigned IPA with SideStore. This is not yet a complete PC emulator.",
+      "iconURL": "https://i-steam.github.io/IMG_3523.jpeg",
+      "tintColor": "#2478C8",
+      "versions": [
+        {
+          "version": "nightly-38054084476",
+          "date": "2026-10-10T13:01:42Z",
+          "size": 140386,
+          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
+          "localizedDescription": "NIGHTLY build. SHA-256: ebff29e29610baf3b75e2eaa1f6d15d3cddf6b4a8565da391a3b2941a0ad26ce. Unsigned prototype; sign with SideStore before installing.",
+          "minOSVersion": "16.0"
+        }
+      ]
     }
   ],
   "news": [
