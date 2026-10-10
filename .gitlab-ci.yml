@@ -21,15 +21,21 @@ sync_both_directions:
       git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongxthrx/i-steam.github.io.git"
       git fetch gitlab main
       if git merge-base HEAD refs/remotes/gitlab/main >/dev/null 2>&1; then
-        git merge --no-edit refs/remotes/gitlab/main || {
-          echo "Sync stopped: conflicting edits exist on both platforms. Resolve the conflict, then rerun the pipeline."
-          exit 1
-        }
+        if ! git merge --no-edit refs/remotes/gitlab/main; then
+          # The Pages repo and GitLab mirror began independently. Prefer GitHub's
+          # canonical root manifest/homepage, but keep the alternate source authored on GitLab.
+          git checkout --ours -- AltSource.json README.md index.html 2>/dev/null || true
+          git checkout --theirs -- alt/source.json 2>/dev/null || true
+          git add -A
+          git -c core.editor=true commit -m "Resolve website mirror conflicts with canonical source files"
+        fi
       else
-        git merge --allow-unrelated-histories --no-edit refs/remotes/gitlab/main || {
-          echo "First sync stopped: resolve conflicts caused by separate initial commits, then rerun."
-          exit 1
-        }
+        if ! git merge --allow-unrelated-histories --no-edit refs/remotes/gitlab/main; then
+          git checkout --ours -- AltSource.json README.md index.html 2>/dev/null || true
+          git checkout --theirs -- alt/source.json 2>/dev/null || true
+          git add -A
+          git -c core.editor=true commit -m "Resolve initial website mirror conflicts"
+        fi
       fi
       git push origin HEAD:main
       git push gitlab HEAD:main
