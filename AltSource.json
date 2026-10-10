@@ -7,63 +7,34 @@
   "website": "https://i-steam.github.io/",
   "patreonURL": "https://www.patreon.com/cw/example",
   "tintColor": "#2478C8",
-  "featuredApps": [
-    "com.example.myapp",
-    "com.example.anotherapp"
-  ],
   "apps": [
     {
-      "name": "i-Steam",
-      "bundleIdentifier": "com.chantinlongx.iSteam",
-      "developerName": "I-Steam",
-      "subtitle": "Nightly and release builds",
+      "name": "i-Steam Release",
+      "bundleIdentifier": "com.Xthrx.iSteam",
+      "developerName": "Xthrx",
+      "subtitle": "Stable release channel",
       "localizedDescription": "Experimental iOS launcher prototype. Sign the unsigned IPA with SideStore. This is not yet a complete PC emulator.",
       "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
       "tintColor": "#2478C8",
-      "versions": [
-        {
-          "version": "nightly-38053954548",
-          "date": "2026-10-10T12:59:26Z",
-          "size": 140388,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: 538b1c6f50562b195d0e5a7a4b0b7cc7ce6320f16c777d8870de775976ebd8a0. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        },
-        {
-          "version": "nightly-38053686414",
-          "date": "2026-10-10T12:55:32Z",
-          "size": 140380,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: ba3f1a0ce7eaab66077345d27802b66b42fe7afc361bb123d0805f347e1217ea. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        },
-        {
-          "version": "nightly-38053702798",
-          "date": "2026-10-10T12:55:22Z",
-          "size": 140388,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: c365d8106c954e1c349603d8947a378f0cdb35a4d64726b23c4a6498549d3ddb. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        },
-        {
-          "version": "nightly-38053675290",
-          "date": "2026-10-10T12:55:17Z",
-          "size": 140380,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: af3dee3a98d31d354967d3673e834c6f574d577b0a3a1285c09078be88dc2ab4. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        }
-      ]
+      "versions": []
     },
     {
-      "name": "i-Steam nightly",
+      "name": "i-Steam Nightly",
       "bundleIdentifier": "com.Xthrx.iSteam.Nightly",
       "developerName": "Xthrx",
-      "subtitle": "Experimental nightly build",
+      "subtitle": "Nightly experimental builds",
       "localizedDescription": "Experimental iOS launcher prototype. Sign the unsigned IPA with SideStore. This is not yet a complete PC emulator.",
       "iconURL": "https://i-steam.github.io/IMG_3523.jpeg",
       "tintColor": "#2478C8",
       "versions": [
+        {
+          "version": "nightly-38054339453",
+          "date": "2026-10-10T13:05:47Z",
+          "size": 140386,
+          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
+          "localizedDescription": "NIGHTLY build. SHA-256: 400eeb1c208f9889a90b0d235e5877f3236d0273f70ef11d4d1971527c03d19a. Unsigned prototype; sign with SideStore before installing.",
+          "minOSVersion": "16.0"
+        },
         {
           "version": "nightly-38054084476",
           "date": "2026-10-10T13:01:42Z",
@@ -73,28 +44,6 @@
           "minOSVersion": "16.0"
         }
       ]
-    }
-  ],
-  "news": [
-    {
-      "title": "New Feature Announcement",
-      "identifier": "new_feature",
-      "caption": "Introducing a new feature in AltStore!",
-      "date": "2023-03-15",
-      "tintColor": "#5CA399",
-      "imageURL": "https://example.com/new_feature_image.png",
-      "notify": true,
-      "url": "https://example.com/new_feature_details"
-    },
-    {
-      "title": "App Update Available",
-      "identifier": "app_update",
-      "caption": "An update is available for My Example App.",
-      "date": "2023-03-10T10:00:00-07:00",
-      "tintColor": "#3660A2",
-      "imageURL": "https://example.com/app_update_image.png",
-      "notify": false,
-      "appID": "com.example.myapp"
     }
   ]
 }
