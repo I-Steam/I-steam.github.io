@@ -18,7 +18,7 @@ sync_both_directions:
       cd work
       git config user.name "i-Steam mirror bot"
       git config user.email "mirror-bot@example.invalid"
-      git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongx/i-steam.github.io.git"
+      git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongxthrx/i-steam.github.io.git"
       git fetch gitlab main
       if git merge-base HEAD refs/remotes/gitlab/main >/dev/null 2>&1; then
         git merge --no-edit refs/remotes/gitlab/main || {
