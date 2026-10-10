@@ -1,39 +1,35 @@
 stages:
   - sync
 
-# Bidirectional, conflict-aware sync between the GitHub Pages repository and
-# this GitLab copy. Run manually or on a schedule; do not trigger on pushes
-# created by the sync itself.
 sync_both_directions:
   stage: sync
   image: alpine:3.20
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api"'
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
   before_script:
     - apk add --no-cache git
   script:
-    - test -n "${GITLAB_TOKEN}" || (echo "Add masked CI/CD variable GITLAB_TOKEN with write_repository access to this GitLab project." && exit 1)
-    - test -n "${GITHUB_TOKEN}" || (echo "Add masked CI/CD variable GITHUB_TOKEN with Contents: Read and write access to I-Steam/I-steam.github.io." && exit 1)
-    - git clone --branch main --single-branch "https://x-access-token:${GITHUB_TOKEN}@github.com/I-Steam/I-steam.github.io.git" work
-    - cd work
-    - git config user.name "i-Steam mirror bot"
-    - git config user.email "mirror-bot@example.invalid"
-    - git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongx/i-steam.github.io.git"
-    - git fetch gitlab main
     - |
+      set -eu
+      : "${GITLAB_TOKEN:?Add masked CI/CD variable GITLAB_TOKEN with write_repository access to this GitLab project.}"
+      : "${GITHUB_TOKEN:?Add masked CI/CD variable GITHUB_TOKEN with Contents read/write access to I-Steam/I-steam.github.io.}"
+      git clone --branch main --single-branch "https://x-access-token:${GITHUB_TOKEN}@github.com/I-Steam/I-steam.github.io.git" work
+      cd work
+      git config user.name "i-Steam mirror bot"
+      git config user.email "mirror-bot@example.invalid"
+      git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongx/i-steam.github.io.git"
+      git fetch gitlab main
       if git merge-base HEAD refs/remotes/gitlab/main >/dev/null 2>&1; then
         git merge --no-edit refs/remotes/gitlab/main || {
           echo "Sync stopped: conflicting edits exist on both platforms. Resolve the conflict, then rerun the pipeline."
           exit 1
         }
       else
-        # The two repositories started with separate initial commits.
-        # Preserve both histories and merge non-conflicting files.
         git merge --allow-unrelated-histories --no-edit refs/remotes/gitlab/main || {
-          echo "First sync stopped: resolve conflicts caused by the separate initial commits, then rerun."
+          echo "First sync stopped: resolve conflicts caused by separate initial commits, then rerun."
           exit 1
         }
       fi
-    - git push origin HEAD:main
-    - git push gitlab HEAD:main
+      git push origin HEAD:main
+      git push gitlab HEAD:main
