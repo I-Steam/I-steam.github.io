@@ -1,75 +1,91 @@
 {
   "name": "I-Steam",
-  "subtitle": "Official i-Steam iOS builds",
-  "description": "Experimental iOS VM launcher. Guest OS boot and game execution remain under development.",
+  "subtitle": "Official i-Steam iOS and tvOS builds",
+  "description": "Experimental i-Steam launcher builds for iOS and tvOS. Unsigned IPAs require a compatible signing/install method.",
   "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
   "headerURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/OceanHeader.png",
   "website": "https://i-steam.github.io/",
   "patreonURL": "https://www.patreon.com/cw/example",
   "tintColor": "#2478C8",
   "featuredApps": [
-    "com.example.myapp",
-    "com.example.anotherapp"
+    "com.xthrx.isteam",
+    "com.xthrx.isteam.nightly",
+    "com.xthrx.isteam.tvos",
+    "com.xthrx.isteam.tvos.nightly"
   ],
   "apps": [
     {
-      "name": "i-Steam",
-      "bundleIdentifier": "com.chantinlongx.iSteam",
-      "developerName": "I-Steam",
-      "subtitle": "Nightly and release builds",
-      "localizedDescription": "Experimental iOS launcher prototype. Sign the unsigned IPA with SideStore. This is not yet a complete PC emulator.",
+      "name": "i-Steam Release",
+      "bundleIdentifier": "com.xthrx.isteam",
+      "developerName": "Xthrx",
+      "subtitle": "Stable iOS release channel",
+      "localizedDescription": "Experimental iOS launcher prototype. Unsigned IPA; sign with SideStore before installing.",
       "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
       "tintColor": "#2478C8",
       "versions": [
         {
-          "version": "nightly-38053954548",
-          "date": "2026-10-10T12:59:26Z",
-          "size": 140388,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: 538b1c6f50562b195d0e5a7a4b0b7cc7ce6320f16c777d8870de775976ebd8a0. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        },
-        {
-          "version": "nightly-38053686414",
-          "date": "2026-10-10T12:55:32Z",
-          "size": 140380,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: ba3f1a0ce7eaab66077345d27802b66b42fe7afc361bb123d0805f347e1217ea. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        },
-        {
-          "version": "nightly-38053702798",
-          "date": "2026-10-10T12:55:22Z",
-          "size": 140388,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: c365d8106c954e1c349603d8947a378f0cdb35a4d64726b23c4a6498549d3ddb. Unsigned prototype; sign with SideStore before installing.",
-          "minOSVersion": "16.0"
-        },
-        {
-          "version": "nightly-38053675290",
-          "date": "2026-10-10T12:55:17Z",
-          "size": 140380,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: af3dee3a98d31d354967d3673e834c6f574d577b0a3a1285c09078be88dc2ab4. Unsigned prototype; sign with SideStore before installing.",
+          "version": "0.1.009",
+          "buildVersion": "9",
+          "date": "2026-10-11T15:00:00Z",
+          "downloadURL": "https://github.com/I-Steam/I-steam/releases/download/main/iSteam-ios.ipa",
+          "localizedDescription": "MAIN iOS build 0.1.009. Unsigned prototype; sign before installing.",
           "minOSVersion": "16.0"
         }
       ]
     },
     {
-      "name": "i-Steam nightly",
-      "bundleIdentifier": "com.Xthrx.iSteam.Nightly",
+      "name": "i-Steam Nightly",
+      "bundleIdentifier": "com.xthrx.isteam.nightly",
       "developerName": "Xthrx",
-      "subtitle": "Experimental nightly build",
-      "localizedDescription": "Experimental iOS launcher prototype. Sign the unsigned IPA with SideStore. This is not yet a complete PC emulator.",
+      "subtitle": "Experimental iOS nightly channel",
+      "localizedDescription": "Experimental iOS launcher prototype. Nightly builds may be unstable. Sign with SideStore.",
       "iconURL": "https://i-steam.github.io/IMG_3523.jpeg",
       "tintColor": "#2478C8",
       "versions": [
         {
-          "version": "nightly-38054084476",
-          "date": "2026-10-10T13:01:42Z",
-          "size": 140386,
-          "downloadURL": "https://i-steam.github.io/downloads/iSteam-nightly.ipa",
-          "localizedDescription": "NIGHTLY build. SHA-256: ebff29e29610baf3b75e2eaa1f6d15d3cddf6b4a8565da391a3b2941a0ad26ce. Unsigned prototype; sign with SideStore before installing.",
+          "version": "0.1.009",
+          "buildVersion": "9",
+          "date": "2026-10-11T15:00:00Z",
+          "downloadURL": "https://github.com/I-Steam/I-steam/releases/download/nightly/iSteam-ios.ipa",
+          "localizedDescription": "NIGHTLY iOS build 0.1.009. Unsigned prototype; sign before installing.",
+          "minOSVersion": "16.0"
+        }
+      ]
+    },
+    {
+      "name": "i-Steam tvOS Main",
+      "bundleIdentifier": "com.xthrx.isteam.tvos",
+      "developerName": "Xthrx",
+      "subtitle": "Stable Apple TV build",
+      "localizedDescription": "tvOS build for Apple TV only. This IPA cannot be installed on iPhone or iPad; use a compatible tvOS signing/install method.",
+      "iconURL": "https://i-steam.github.io/IMG_3524.jpeg",
+      "tintColor": "#2478C8",
+      "versions": [
+        {
+          "version": "0.1.009",
+          "buildVersion": "9",
+          "date": "2026-10-11T15:00:00Z",
+          "downloadURL": "https://github.com/I-Steam/I-steam/releases/download/main/iSteam-tvOS.ipa",
+          "localizedDescription": "MAIN tvOS build 0.1.009. Apple TV only; not an iOS app.",
+          "minOSVersion": "16.0"
+        }
+      ]
+    },
+    {
+      "name": "i-Steam tvOS Nightly",
+      "bundleIdentifier": "com.xthrx.isteam.tvos.nightly",
+      "developerName": "Xthrx",
+      "subtitle": "Experimental Apple TV nightly build",
+      "localizedDescription": "tvOS nightly build for Apple TV only. This IPA cannot be installed on iPhone or iPad; use a compatible tvOS signing/install method.",
+      "iconURL": "https://i-steam.github.io/IMG_3523.jpeg",
+      "tintColor": "#2478C8",
+      "versions": [
+        {
+          "version": "0.1.009",
+          "buildVersion": "9",
+          "date": "2026-10-11T15:00:00Z",
+          "downloadURL": "https://github.com/I-Steam/I-steam/releases/download/nightly/iSteam-tvOS.ipa",
+          "localizedDescription": "NIGHTLY tvOS build 0.1.009. Apple TV only; not an iOS app.",
           "minOSVersion": "16.0"
         }
       ]
