@@ -1,8 +1,10 @@
-name: Bidirectional Pages repository sync
+
+name: GitLab and GitHub Pages Sync
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
@@ -17,57 +19,84 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+
     steps:
-      - name: Check out GitHub Pages repository
+      - name: Check out GitHub repository
         uses: actions/checkout@v4
         with:
-          ref: main
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Configure Git identity
+      - name: Configure Git
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "Pages Sync Bot"
+          git config user.email "pages-sync[bot]@users.noreply.github.com"
 
-      - name: Fetch both main branches
+      - name: Add GitLab remote
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
         run: |
-          set -euo pipefail
-          if [ -z "${GITLAB_TOKEN:-}" ]; then
-            echo "::error::Add a GitLab access token as the GITLAB_TOKEN Actions secret."
+          if [ -z "$GITLAB_TOKEN" ]; then
+            echo "::error::GITLAB_TOKEN secret is missing."
             exit 1
           fi
 
-          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongxthrx/i-steam.github.io.git"
+          git remote add gitlab \
+            "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongxthrx/i-steam.github.io.git"
+
+      - name: Fetch both repositories
+        run: |
           git fetch origin main
           git fetch gitlab main
 
-      - name: Fast-forward the older side
+      - name: Reconcile repository histories
+        id: reconcile
         run: |
-          set -euo pipefail
+          set -e
+
           GH_SHA="$(git rev-parse origin/main)"
           GL_SHA="$(git rev-parse gitlab/main)"
 
+          echo "GitHub: $GH_SHA"
+          echo "GitLab: $GL_SHA"
+
           if [ "$GH_SHA" = "$GL_SHA" ]; then
-            echo "Both main branches are already synchronized."
+            echo "Both repositories are already synchronized."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           if git merge-base --is-ancestor "$GL_SHA" "$GH_SHA"; then
-            echo "GitHub is ahead; fast-forwarding GitLab."
-            git push gitlab "$GH_SHA:main"
-            exit 0
+            echo "GitHub is ahead. Keeping GitHub history."
+            git checkout -B main "$GH_SHA"
+
+          elif git merge-base --is-ancestor "$GH_SHA" "$GL_SHA"; then
+            echo "GitLab is ahead. Updating local branch."
+            git checkout -B main "$GL_SHA"
+
+          else
+            echo "Both repositories contain unique commits."
+            git checkout -B main "$GH_SHA"
+
+            if ! git merge --no-ff --no-edit gitlab/main; then
+              git merge --abort || true
+              echo "::error::Merge conflict detected. No repository was overwritten."
+              exit 1
+            fi
           fi
 
-          if git merge-base --is-ancestor "$GH_SHA" "$GL_SHA"; then
-            echo "GitLab is ahead; fast-forwarding GitHub."
-            git push origin "$GL_SHA:main"
-            exit 0
-          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
 
-          echo "::error::GitLab and GitHub main have diverged. No force-push was performed."
-          echo "GitHub main: $GH_SHA"
-          echo "GitLab main: $GL_SHA"
-          exit 1
+      - name: Push merged history to GitLab
+        if: steps.reconcile.outputs.changed == 'true'
+        run: |
+          git push gitlab HEAD:main
+
+      - name: Push merged history to GitHub
+        if: steps.reconcile.outputs.changed == 'true'
+        run: |
+          git push origin HEAD:main
+
+      - name: Report synchronization
+        run: |
+          echo "Synchronization workflow completed."
