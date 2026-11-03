@@ -1,0 +1,73 @@
+name: Bidirectional Pages repository sync
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-bidirectional-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out GitHub Pages repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fetch both main branches
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${GITLAB_TOKEN:-}" ]; then
+            echo "::error::Add a GitLab access token as the GITLAB_TOKEN Actions secret."
+            exit 1
+          fi
+
+          git remote add gitlab "https://oauth2:${GITLAB_TOKEN}@gitlab.com/chantinlongxthrx/i-steam.github.io.git"
+          git fetch origin main
+          git fetch gitlab main
+
+      - name: Fast-forward the older side
+        run: |
+          set -euo pipefail
+          GH_SHA="$(git rev-parse origin/main)"
+          GL_SHA="$(git rev-parse gitlab/main)"
+
+          if [ "$GH_SHA" = "$GL_SHA" ]; then
+            echo "Both main branches are already synchronized."
+            exit 0
+          fi
+
+          if git merge-base --is-ancestor "$GL_SHA" "$GH_SHA"; then
+            echo "GitHub is ahead; fast-forwarding GitLab."
+            git push gitlab "$GH_SHA:main"
+            exit 0
+          fi
+
+          if git merge-base --is-ancestor "$GH_SHA" "$GL_SHA"; then
+            echo "GitLab is ahead; fast-forwarding GitHub."
+            git push origin "$GL_SHA:main"
+            exit 0
+          fi
+
+          echo "::error::GitLab and GitHub main have diverged. No force-push was performed."
+          echo "GitHub main: $GH_SHA"
+          echo "GitLab main: $GL_SHA"
+          exit 1
